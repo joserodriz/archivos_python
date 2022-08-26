@@ -14,7 +14,6 @@ import csv
 
 def ej3():
     print('Ejercicio de archivos CSV 1º')
-    archivo = 'stock.csv'
     
     # Realice un programa que abra el archivo 'stock.csv'
     # en modo lectura y cuente el stock total de tornillos
@@ -28,11 +27,44 @@ def ej3():
 
     # Comenzar aquí, recuerde el identado dentro de esta funcion
     
+    archivo = open('stock.csv')
+
+    lista = list(csv.DictReader(archivo))
+
+    archivo.close()
+    suma = 0
+
+    for i in lista:
+        linea = i
+        cant_tornillos = int(linea.get('tornillos'))
+        suma += cant_tornillos
+    
+    print('La cantidad de tornillos es: {}'.format(suma))
 
 
 def ej4():
     print('Ejercicios con archivos CSV 2º')
-    archivo = 'propiedades.csv'
+    archivo = open('propiedades.csv')
+    lista = list(csv.DictReader(archivo))
+    archivo.close()
+    suma_2 = 0
+    suma_3 = 0
+    
+    for i in lista:
+        try:
+            ambientes = int(i.get('ambientes'))
+
+        except:
+            print('Error linea {}'.format(i))  
+
+        if ambientes == 2:
+            suma_2 += 1
+        
+        if ambientes == 3:
+            suma_3 += 1
+
+    print('Dptos 2 ambientes: {}'.format(suma_2))
+    print('Dptos 3 ambientes: {}'.format(suma_3))
 
     # Realice un programa que abra el archivo CSV "propiedades.csv"
     # en modo lectura. Recorrar dicho archivo y contar
