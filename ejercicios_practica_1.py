@@ -78,7 +78,7 @@ def ej2():
     while True:
         k = input('Ingrese producto a cargar\n')
         claves = k in stock.keys()
-        if k != 'FIN':
+        if k != 'FIN' and k != 'fin':
             if claves == True:
                     cantidad_ingresada = int(input('Ingrese cantidad de producto\n'))
                     stock_actual = stock.get(k)
